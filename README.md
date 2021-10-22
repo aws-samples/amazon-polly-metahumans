@@ -4,7 +4,9 @@
 
 This Unreal Engine sample project demonstrates how to bring Epic Games' [MetaHuman digital characters](https://www.unrealengine.com/en-US/digital-humans) to life using the Amazon Polly text-to-speech service from AWS. Use this project as a starting point for creating your own Unreal Engine applications that leverage Amazon Polly to give voice to your MetaHumans using one of 16 different English language voices spanning 5 dialects. Or extend this project to use any of Polly's 60+ voices covering 20+ languages and 13+ dialects.
 
-> 🔥🔥🔥 **TODO:** Insert video file here when this repository is moved to GitHub. GitHub supports uploading inline video directly to a README via it's browser-based markdown editor. That is the only reliable way to embed a video in a README on GitHub. Use the video file `Documentation/media/MetaHumanDemo.mov`
+
+https://user-images.githubusercontent.com/90341805/138525827-1354ab8b-2920-4317-a1f8-4cef5eff1024.mov
+
 
 With Amazon Polly, you only pay for what you use. You are charged based on the number of characters of text that you convert either to speech audio or to speech metadata. In addition, you can cache and replay Amazon Polly’s generated speech at no additional cost. For full pricing details, see [Amazon Polly Pricing](https://aws.amazon.com/polly/pricing/).
 
