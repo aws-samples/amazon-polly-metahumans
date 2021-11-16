@@ -10,10 +10,21 @@ SET MODULE_WIN64_DIR=%SCRIPT_DIR%Win64\
 SET VS_INSTALLPATH=
 IF EXIST "%programfiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" (
     FOR /F "tokens=* USEBACKQ" %%F IN (
-        `"%programfiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -version 16.0 -property installationPath`
+        `"%programfiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -property installationPath`
     ) DO (
         SET VS_INSTALLPATH=%%F
     )
+)
+IF NOT EXIST "%VS_INSTALLPATH%" (
+    @for /F "usebackq delims=" %%I in (`powershell -command "$a=Get-CimInstance MSFT_VSInstance|Out-String|Select-String -Pattern 'InstallLocation.*: (.*)';echo $a.Matches.groups[1].Value"`) do set VS_INSTALLPATH=%%I
+)
+IF NOT EXIST "%VS_INSTALLPATH%" (
+    FOR %%V IN (Community Professional Enterprise) DO (
+        IF EXIST "%programfiles%\Microsoft Visual Studio\2022\%%V" SET VS_INSTALLPATH=%programfiles%\Microsoft Visual Studio\2022\%%V
+    )
+)
+IF NOT EXIST "%VS_INSTALLPATH%" (
+	SET /P VS_INSTALLPATH="Enter absolute path to the VS install path. Typically looks like Program Files/Microsoft Visual Studio/Community/2022. The folder named Common7 should be in this folder. Path="
 )
 CALL "%VS_INSTALLPATH%\Common7\Tools\VsDevCmd.bat"
 
